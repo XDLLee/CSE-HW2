@@ -51,7 +51,7 @@ public class HtmlValidator {
    }
    
    public void validate() {
-      Stack temp = new Stack<HtmlTag>();
+      Stack<HtmlTag> temp = new Stack<HtmlTag>();
       int size = validator.size();
       int countOpenTag = 0;
       for (int i = 0; i < size; i++) {
@@ -67,7 +67,7 @@ public class HtmlValidator {
             System.out.println(printLine(countOpenTag, tag));
             countOpenTag++;
          } else { // Closing tag
-            if (!tag.matches(temp.peek())) {
+            if (temp.isEmpty() || !tag.matches(temp.peek())) {
                System.out.println(unexpected(tag));
             } else { // Current tag closes stored tag
                temp.pop();
